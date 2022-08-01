@@ -40,34 +40,8 @@ public class BookService {
     }
     
     //updates a book
-    @Transactional
-    public Book updateBook(Long id, String title, String desc, String lang, Integer numOfPages) {
-    	Optional<Book> optionalBook = bookRepository.findById(id);
-        if(optionalBook.isPresent()) {
-            Book targetBook = optionalBook.get();
-            if(title != null) {
-            	targetBook.setTitle(title);
-            }
-            
-            if(desc != null) {
-            	targetBook.setDescription(desc);
-            }
-            
-            if(lang != null) {
-            	targetBook.setLanguage(lang);
-            }
-            
-            if(numOfPages != null) {
-            	targetBook.setNumberOfPages(numOfPages);
-            }
-            
-            System.out.println(numOfPages);
-            System.out.println(title);
-            
-            return targetBook;
-        } else {
-        	return null;
-        }
+    public Book updateBook(Book book) {
+    	return bookRepository.save(book);
     }
     
     //deletes a book
