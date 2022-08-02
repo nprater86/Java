@@ -6,13 +6,29 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Show Person</title>
+<title><c:out value="${dojo.name }" /></title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-	<h1 class="display-4"><c:out value="${person.firstName}"/> <c:out value="${person.lastName}"/></h1>
-	<p>License Number: <c:out value="${person.license.number}" /></p>
-	<p>State: <c:out value="${person.license.state}" /></p>
-	<p>Expiration Date: <c:out value="${person.license.expirationDate}" /></p>
+	<div class="container mt-5">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Age</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${dojo.ninjas }" var="ninja">
+					<tr>
+						<td><c:out value="${ninja.firstName }"/></td>
+						<td><c:out value="${ninja.lastName }"/></td>
+						<td><c:out value="${ninja.age }"/></td>
+					</tr>
+				</c:forEach>
+			</tbody>		
+		</table>
+	</div>
 </body>
 </html>

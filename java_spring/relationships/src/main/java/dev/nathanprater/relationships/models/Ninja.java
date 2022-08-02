@@ -9,91 +9,95 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
-@Table(name="licenses")
-public class License {
+@Table(name="ninjas")
+public class Ninja {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date expirationDate;
-    private String state;
+    private String firstName;
+    private String lastName;
+    private int age;
     @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="person_id")
-    private Person person;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="dojo_id")
+    private Dojo dojo;
     
-    public License() {
+    public Ninja() {
+        
     }
     
-	public License(String number, Date expirationDate, String state) {
-		this.number = number;
-		this.expirationDate = expirationDate;
-		this.state = state;
-    }
-	
-	@PrePersist
+    @PrePersist
     protected void onCreate() {
     	this.createdAt = new Date();
+    	this.updatedAt = new Date();
     }
     
     @PreUpdate
     protected void onUpdate() {
     	this.updatedAt = new Date();
     }
-    
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNumber() {
-		return number;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setNumber(String number) {
-		this.number = number;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public Date getExpirationDate() {
-		return expirationDate;
+
+	public String getLastName() {
+		return lastName;
 	}
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String getState() {
-		return state;
+
+	public int getAge() {
+		return age;
 	}
-	public void setState(String state) {
-		this.state = state;
+
+	public void setAge(int age) {
+		this.age = age;
 	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
+
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
+
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	public Person getPerson() {
-		return person;
+
+	public Dojo getDojo() {
+		return dojo;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
+
+	public void setDojo(Dojo dojo) {
+		this.dojo = dojo;
 	}
 }
