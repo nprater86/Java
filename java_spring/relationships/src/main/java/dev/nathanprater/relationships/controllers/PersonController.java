@@ -28,19 +28,19 @@ public class PersonController {
 	public String showPerson(@PathVariable("id") Long id, Model model) {
 		Person person = service.findPerson(id);
 		model.addAttribute("person",person);
-		return "showPerson.jsp";
+		return "/licenses/showPerson.jsp";
 	}
 	
 	//Create New Person
 	@GetMapping("/new")
 	public String newPerson(@ModelAttribute("person") Person person) {
-		return "newPerson.jsp";
+		return "/licenses/newPerson.jsp";
 	}
 	
 	@PostMapping("")
 	public String create(@Valid @ModelAttribute("person") Person person, BindingResult result) {
 		if(result.hasErrors()) {
-			return "newPerson.jsp";
+			return "/licenses/newPerson.jsp";
 		} else {
 			service.createPerson(person);
 			return "redirect:/persons/" + person.getId();

@@ -33,7 +33,7 @@ public class NinjaController {
 	public String newNinja(@ModelAttribute("ninja") Ninja ninja, Model model) {
 		List<Dojo> dojos = dojoService.allDojos();
 		model.addAttribute("dojos",dojos);
-		return "newNinja.jsp";
+		return "/dojos/newNinja.jsp";
 	}
 	
 	@PostMapping("")
@@ -41,7 +41,7 @@ public class NinjaController {
 		if(result.hasErrors()) {
 			List<Dojo> dojos = dojoService.allDojos();
 			model.addAttribute("dojos",dojos);
-			return "newNinja.jsp";
+			return "/dojos/newNinja.jsp";
 		} else {
 			ninjaService.createNinja(ninja);
 			return "redirect:/ninjas/new";

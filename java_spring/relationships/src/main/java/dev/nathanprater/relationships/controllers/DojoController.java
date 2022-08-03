@@ -26,13 +26,13 @@ public class DojoController {
 	//Create a dojo
 	@GetMapping("/new")
 	public String newDojo(@ModelAttribute("dojo") Dojo dojo) {
-		return "newDojo.jsp";
+		return "/dojos/newDojo.jsp";
 	}
 	
 	@PostMapping("")
 	public String createDojo(@Valid @ModelAttribute("dojo") Dojo dojo, BindingResult result) {
 		if(result.hasErrors()) {
-			return "newDojo.jsp";
+			return "/dojos/newDojo.jsp";
 		} else {
 			dojoService.createDojo(dojo);
 			return "redirect:/dojos/new";
@@ -44,6 +44,6 @@ public class DojoController {
 	public String showDojo(@PathVariable("id") Long id, Model model) {
 		Dojo dojo = dojoService.findDojo(id);
 		model.addAttribute("dojo",dojo);
-		return "showDojo.jsp";
+		return "/dojos/showDojo.jsp";
 	}
 }

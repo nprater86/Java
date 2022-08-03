@@ -33,7 +33,7 @@ public class LicenseController {
 	public String newLicense(@ModelAttribute("license") License license, Model model) {
 		List<Person> persons = personService.allPersons();
 		model.addAttribute("persons",persons);
-		return "newLicense.jsp";
+		return "/licenses/newLicense.jsp";
 	}
 	
 	@PostMapping("")
@@ -41,7 +41,7 @@ public class LicenseController {
 		if(result.hasErrors()) {
 			List<Person> persons = personService.allPersons();
 			model.addAttribute("persons",persons);
-			return "newLicense.jsp";
+			return "/licenses/newLicense.jsp";
 		} else {
 			licenseService.createLicense(license);
 			return "redirect:/licenses/new";
