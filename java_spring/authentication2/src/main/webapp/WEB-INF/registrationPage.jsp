@@ -17,6 +17,12 @@
             <form:label path="email">Email:</form:label>
             <form:input type="text" path="email"/>
         </p>
+        
+        <p>
+            <form:label path="userName">User Name:</form:label>
+            <form:input type="text" path="userName"/>
+        </p>
+        
         <p>
             <form:label path="password">Password:</form:label>
             <form:password path="password"/>
