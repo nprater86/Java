@@ -9,6 +9,7 @@ import dev.nathanprater.auth.models.Role;
 
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Long> {
+	Rolse findById();
 	List<Role> findAll();
 	List<Role> findByName(String name);
 }

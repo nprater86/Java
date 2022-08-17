@@ -1,10 +1,12 @@
 package dev.nathanprater.auth.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.nathanprater.auth.models.Role;
 import dev.nathanprater.auth.models.User;
 import dev.nathanprater.auth.repositories.RoleRepository;
 import dev.nathanprater.auth.repositories.UserRepository;
@@ -47,5 +49,23 @@ public class UserService {
     
     public void deleteById(Long id) {
     	userRepository.deleteById(id);
+    }
+    
+    public User promoteUser(Long id) {
+    	Optional<Role> optionalRole = roleRepository.findById(2L);
+    	if(optionalRole.isPresent()) {
+    		Role role = optionalRole.get();
+    	} else {
+    		return null;
+    	}
+    	Optional<User> optionalUser = userRepository.findById(id);
+    	if(optionalUser.isPresent()) {
+    		User user = optionalUser.get();
+    		user.getRoles().add(role);
+    		user.setIsAdmin(true);
+    		return user;
+    	} else {
+    		return null;
+    	}
     }
 }

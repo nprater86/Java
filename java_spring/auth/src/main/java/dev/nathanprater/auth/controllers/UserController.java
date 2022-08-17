@@ -92,4 +92,11 @@ public class UserController {
 		userService.deleteById(id);
 		return "redirect:/admin";
 	}
+	
+	//promote user to admin
+	@PostMapping("/admin/promote/{id}")
+	public String promoteUser(@PathVariable(value="id") Long id) {
+		userService.promoteUser(id);
+		return "redirect:/admin";
+	}
 }
