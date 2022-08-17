@@ -42,16 +42,20 @@ public class Toaster {
         }
     }
 
+    //this loops through all of the bread and prints the state
     public void breadStatus(){
+        //if the list is null or the size is 0 then there's no bread currently in it
         if(this.bread == null || this.bread.size() < 1){
             System.out.println("Toaster is empty!");
         } else {
+            //if not empty, then loop through the list and print out the state of each bread slice
             for(int i = 0; i < this.bread.size(); i++){
                 System.out.println("Bread " + (i + 1) + " is " + bread.get(i).getState() + "!");
             }
         }
     }
 
+    //this will loop through all of the bread in the bread list and change their state from UNTOASTED to TOASTED
     public void toastBread(){
         //loop through all the bread and set its state to "TOASTED"
         for(Bread bread : this.bread){
@@ -59,6 +63,7 @@ public class Toaster {
         }
     }
 
+    //this will empty the bread list ONLY if all of the bread is toasted
     public void emptyToaster(){
         //create boolean for whether all the bread is toasted and set to true
         boolean allToasted = true;
